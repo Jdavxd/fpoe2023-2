@@ -6,8 +6,23 @@ package modelo;
 
 /**
  *
- * @author julia
+ * @author julian rengifo
  */
 public class Jugador {
+    private String nombre;
     
-}
+    
+    public Jugador(String nombre){
+        this.nombre = nombre;
+    }
+    
+    public  Jugador(){
+        nombre = "Jugador 1";
+    }
+        
+    public String getNombre(){
+        return nombre;
+    }    
+        
+  }
+   
