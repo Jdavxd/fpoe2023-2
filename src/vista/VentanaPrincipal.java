@@ -42,7 +42,7 @@ public final class VentanaPrincipal extends JFrame {
         //Configuración de la ventana
         setTitle("Adivinador");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200,700);
+        setSize(1200,600);
         setLocationRelativeTo(null);
         setVisible(true); 
         setResizable(false);
