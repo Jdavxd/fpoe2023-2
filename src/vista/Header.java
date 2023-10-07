@@ -25,6 +25,7 @@ class Header extends JPanel{
     @Override
     public void paint(Graphics g){
         Dimension tamano = getSize();
+        System.out.println("dfmlñs");
         imagen = new ImageIcon(getClass().getResource(nombre));
         g.drawImage(imagen.getImage(), 0, 0, null);
         setOpaque(false);
