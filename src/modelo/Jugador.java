@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author julian rengifo
@@ -17,6 +19,10 @@ public class Jugador {
     
     public Jugador(String nombre){
         this.nombre = nombre;
+    }
+
+    public Jugador(JTextField nombreJugador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     public String getNombre() {
@@ -51,6 +57,12 @@ public class Jugador {
     public void setInentosMalos(int intentosMalos){
        this.intentosMalos = intentosMalos;
     }
-        
-  }
    
+    public int getRonda (){
+        return ronda;
+    }    
+    
+    public void setRonda (int ronda){
+        this.ronda = ronda;
+  }
+}

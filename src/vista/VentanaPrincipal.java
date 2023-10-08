@@ -6,18 +6,23 @@ package vista;
 
 
 import modelo.Jugador;
+import vista.VentanaDeJuego;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 //import java.awt.event.KeyEvent;
 //import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+//import javax.swing.JOptionPane;
 //import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -26,21 +31,45 @@ import javax.swing.SwingConstants;
  *
  * @author julian rengifo
  */
-public final class VentanaPrincipal extends JFrame {
+public final class VentanaPrincipal extends javax.swing.JFrame {
     
     private JLabel jlMensaje;
     private JPanel jpContenido;
     private JLabel jlNombre;
     private Header jpHeader;
     private JTextField txtNombre;
-    private JButton btnIngresar;
+    private javax.swing.JButton btnIngresar;
+    private JTextField campoNombre;
+    private JFrame ventana;
+    private JPanel panel;
+    
     
     
     public VentanaPrincipal(){
        iniciarComponentes();
     }
+    /*
+    void(new ActionListener() {
+            @Override
+            private void actionPerformed(ActionEvent e) {
+                // Crear e inicializar la nueva ventana
+                JFrame nuevaVentana = new JFrame("Nueva Ventana");
+                nuevaVentana.setSize(200, 150);
+
+                // Puedes personalizar y agregar componentes a esta nueva ventana según tus necesidades
+
+                // Hacer visible la nueva ventana
+                nuevaVentana.setVisible(true);
+                        
+                        }
+    });
+    */
     
         private void iniciarComponentes(){
+        campoNombre = new JTextField();
+        ventana = new JFrame();
+        panel = new JPanel();
+        panel.setLayout(null);
         //Configuración de la ventana
         setTitle("Figuras Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,6 +88,8 @@ public final class VentanaPrincipal extends JFrame {
         
         jpContenido = new JPanel();
         jpHeader = new Header("/imagenes/fig3.png");
+        
+       
         
         
         jpContenido.setSize(650,500);        
@@ -88,6 +119,8 @@ public final class VentanaPrincipal extends JFrame {
         jpContenido.add(jlMensaje);
         jpContenido.add(jlNombre);
         jpContenido.add(btnIngresar);
+        
+        
                 
         txtNombre = new JTextField("");
         txtNombre.setHorizontalAlignment(JTextField.CENTER);
@@ -107,8 +140,9 @@ public final class VentanaPrincipal extends JFrame {
         
         Image miIcono = miPantalla.getImage("src/imagenes/icono.png");
 	setIconImage(miIcono);
-               
+        
+        // escucha de el boton de iniciar juego
+        
     }
-    
     
 }
