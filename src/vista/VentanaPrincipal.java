@@ -27,12 +27,14 @@ import javax.swing.SwingConstants;
  * @author julian rengifo
  */
 public final class VentanaPrincipal extends JFrame {
-    private Header jpHeader;
+    
     private JLabel jlMensaje;
     private JPanel jpContenido;
     private JLabel jlNombre;
+    private Header jpHeader;
     private JTextField txtNombre;
-    private JButton btnIngresar; 
+    private JButton btnIngresar;
+    
     
     public VentanaPrincipal(){
        iniciarComponentes();
@@ -40,9 +42,9 @@ public final class VentanaPrincipal extends JFrame {
     
         private void iniciarComponentes(){
         //Configuración de la ventana
-        setTitle("Adivinador");
+        setTitle("Figuras Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200,600);
+        setSize(500,550);
         setLocationRelativeTo(null);
         setVisible(true); 
         setResizable(false);
@@ -52,30 +54,32 @@ public final class VentanaPrincipal extends JFrame {
         
         
         //Configuración del Encabezado
-        jpHeader = new Header("/imagenes/header.png"); 
-        jpContenido = new JPanel();
-        
         jlMensaje = new JLabel("BIENVENIDO AL EJERCICIO DE TU MEMORIA",SwingConstants.CENTER);
         jlNombre = new JLabel("Ingresa tu nombre",SwingConstants.CENTER );
         
-        jpHeader.setSize(51,243);
+        jpContenido = new JPanel();
+        jpHeader = new Header("/imagenes/fig3.png");
         
         
-        jpContenido.setSize(519,500);        
-        jpContenido.setBounds(0,110, 519, 500);
+        jpContenido.setSize(650,500);        
+        jpContenido.setBounds(0,110, 800, 800);
         jpContenido.setLayout(null);
         
         add(jpHeader);
         add(jpContenido);
         
         jlMensaje.setBounds(0,20, 519,20);
-        jlMensaje.setForeground(Color.GRAY);
-        jlMensaje.setFont(new Font("arial", Font.BOLD, 20));  
+        //jlMensaje.setForeground(Color.GRAY);
+        jlNombre.setForeground(new Color(0,87,193));
+        jlMensaje.setFont(new Font("arial", Font.BOLD, 18));  
         
         
         jlNombre.setBounds(0,130, 519,35);
         jlNombre.setForeground(new Color(0,87,193));
         jlNombre.setFont(new Font("arial", Font.BOLD, 20)); 
+        
+        jpHeader.setSize(1200,550);
+        
                 
         btnIngresar = new JButton("Iniciar Juego");
         btnIngresar.setBounds(180,270, 150,35);
@@ -92,7 +96,7 @@ public final class VentanaPrincipal extends JFrame {
         
         jpContenido.add(txtNombre);
         
-        txtNombre.setBounds(50,190,410, 40);
+        txtNombre.setBounds(53,190,410, 40);
         
         //ManejadorDeEventos manejadorEventos = new ManejadorDeEventos();
         
