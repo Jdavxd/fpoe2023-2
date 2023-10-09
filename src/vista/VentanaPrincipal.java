@@ -1,158 +1,129 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package vista;
-
-
-
-
-import modelo.Jugador;
-import vista.VentanaDeJuego;
-
-
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Toolkit;
-
-
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-//import java.awt.event.KeyEvent;
-//import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-//import javax.swing.JOptionPane;
-//import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import modelo.Jugador;
 /**
  *
- * @author julian rengifo
+ * @author jose9
  */
-public final class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipal extends JFrame{
+    private JLabel lblTitulo;
+    private JLabel lblTitulo2;
+    private JTextField cajaTexto;
+    private JLabel lblHTP;
+    private JLabel lblWP;
+    private JLabel lblJugar;
+    private JLabel nombreJugador;
+    private JButton btnIniciarJuego;
+    private JLabel btnInstrucciones;
+    private JLabel textoInstrucciones;
     
-    private JLabel jlMensaje;
-    private JPanel jpContenido;
-    private JLabel jlNombre;
-    private Header jpHeader;
-    private JTextField txtNombre;
-    private javax.swing.JButton btnIngresar;
-    private JTextField campoNombre;
-    private JFrame ventana;
-    private JPanel panel;
-    
-    
-    
-    public VentanaPrincipal(){
-       iniciarComponentes();
-    }
-    /*
-    void(new ActionListener() {
-            @Override
-            private void actionPerformed(ActionEvent e) {
-                // Crear e inicializar la nueva ventana
-                JFrame nuevaVentana = new JFrame("Nueva Ventana");
-                nuevaVentana.setSize(200, 150);
-
-                // Puedes personalizar y agregar componentes a esta nueva ventana según tus necesidades
-
-                // Hacer visible la nueva ventana
-                nuevaVentana.setVisible(true);
-                        
-                        }
-    });
-    */
-    
-        private void iniciarComponentes(){
-        campoNombre = new JTextField();
-        ventana = new JFrame();
-        panel = new JPanel();
-        panel.setLayout(null);
-        //Configuración de la ventana
-        setTitle("Figuras Game");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500,550);
+    private Container contenedorInicial;
+    public VentanaPrincipal()
+    {
+        iniciarComponentes();   
+        setSize(750,700);
+        setVisible(true);
         setLocationRelativeTo(null);
-        setVisible(true); 
-        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        setTitle("PRINCIPAL");
+        setResizable(false);
+        SwingUtilities.updateComponentTreeUI(contenedorInicial);
+    }
+    
+    private void iniciarComponentes()
+    {
+        lblTitulo = new JLabel("BIENVENIDO AL EJERCICIO DE",SwingConstants.CENTER);
+        lblTitulo2 = new JLabel("FIGURAS GEOMETRICAS",SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Serif", Font.PLAIN, 18));
+        lblTitulo.setBounds(160,50,400,50);
+        lblTitulo2.setFont(new Font("Serif", Font.PLAIN, 18));
+        lblTitulo2.setBounds(160,80,400,50);
         
-        Toolkit miPantalla = Toolkit.getDefaultToolkit();
+        nombreJugador = new JLabel("INGRESA TU NOMBRE",SwingConstants.CENTER);
+        nombreJugador.setFont(new Font("Serif", Font.ITALIC, 16));
+        nombreJugador.setBounds(160,150,400,50);
         
+        cajaTexto = new JTextField();
+        cajaTexto.setBounds(160,200,400,50);
         
-        //Configuración del Encabezado
-        jlMensaje = new JLabel("BIENVENIDO AL EJERCICIO DE TU MEMORIA",SwingConstants.CENTER);
-        jlNombre = new JLabel("Ingresa tu nombre",SwingConstants.CENTER );
-        
-        jpContenido = new JPanel();
-        jpHeader = new Header("/imagenes/fig3.png");
+        btnIniciarJuego = new JButton("JUGAR");
+        btnIniciarJuego.setBounds(210, 280, 300, 40);
+        btnIniciarJuego.setBackground( Color.BLUE); 
+        btnIniciarJuego.setForeground(Color.WHITE); 
         
        
+        textoInstrucciones = new JLabel("INSTRUCCIONES");
+        textoInstrucciones.setFont(new Font("Serif", Font.ITALIC, 16));
+        textoInstrucciones.setBounds(580,450,400,50);
         
         
-        jpContenido.setSize(650,500);        
-        jpContenido.setBounds(0,110, 800, 800);
-        jpContenido.setLayout(null);
         
-        add(jpHeader);
-        add(jpContenido);
-        
-        jlMensaje.setBounds(0,20, 519,20);
-        //jlMensaje.setForeground(Color.GRAY);
-        jlNombre.setForeground(new Color(0,87,193));
-        jlMensaje.setFont(new Font("arial", Font.BOLD, 18));  
+        ImageIcon iconoInstrucciones = new ImageIcon(getClass().getResource("/imagenes/icono.png"));
+        btnInstrucciones = new JLabel(iconoInstrucciones);
+        btnInstrucciones.setBounds(600, 400, 70, 70); // Puedes ajustar las coordenadas y tamaño
+
         
         
-        jlNombre.setBounds(0,130, 519,35);
-        jlNombre.setForeground(new Color(0,87,193));
-        jlNombre.setFont(new Font("arial", Font.BOLD, 20)); 
+        btnIniciarJuego.addMouseListener(new MouseAdapter() {
+        @Override
+            public void mouseClicked(MouseEvent e) {
+                Jugador jugador = new Jugador(cajaTexto.getText());
+                VentanaDeJuego ventanaJuego = new VentanaDeJuego(jugador);
+            }
         
-        jpHeader.setSize(1200,550);
+        });
         
-                
-        btnIngresar = new JButton("Iniciar Juego");
-        btnIngresar.setBounds(180,270, 150,35);
+                btnInstrucciones.addMouseListener(new MouseAdapter() {
+        @Override
+            public void mouseClicked(MouseEvent e) {
+            
+            JOptionPane.showMessageDialog(null, "Instrucciones Básicas para el Juego de Figuras Geométricas:\n\n"
+                + "- Al iniciar el juego, se te pedirá que ingreses tu nombre.\n"
+                + "- Una vez que hayas ingresado tu nombre, el juego comenzará.\n"
+                + "- En cada nivel, se mostrarán figuras geométricas de diferentes tamaños y colores.\n"
+                + "- Tu tarea es identificar y seleccionar la figura correcta según las instrucciones dadas.\n"
+                + "- Puedes hacer clic en la figura que consideres correcta para avanzar al siguiente nivel.\n"
+                + "- La aplicación registrará la cantidad de figuras mostradas, intentos y fallos.");
+            }
+        });
         
-        
-        jpContenido.add(jlMensaje);
-        jpContenido.add(jlNombre);
-        jpContenido.add(btnIngresar);
-        
-        
-                
-        txtNombre = new JTextField("");
-        txtNombre.setHorizontalAlignment(JTextField.CENTER);
-        txtNombre.setForeground(Color.GRAY);
-        txtNombre.setFont(new Font("arial", Font.BOLD, 20)); 
-        
-        jpContenido.add(txtNombre);
-        
-        txtNombre.setBounds(53,190,410, 40);
-        
-        //ManejadorDeEventos manejadorEventos = new ManejadorDeEventos();
-        
-        //btnIngresar.addActionListener(manejadorEventos);
-        //txtNombre.addKeyListener(manejadorEventos);
-        
-        txtNombre.requestFocusInWindow();
-        
-        Image miIcono = miPantalla.getImage("src/imagenes/icono.png");
-	setIconImage(miIcono);
-        
-        // escucha de el boton de iniciar juego
-        
-    }
-        
-        private void boton(java.awt.event.ActionEvent evt){
+        /*
+        class eventoInicial implements ActionListener{
             
         }
+        */
+        
+        
+        
+        
+        contenedorInicial = getContentPane();
+        contenedorInicial.setLayout(null);  
+        contenedorInicial.setBackground(new Color(240, 255, 240)); // Verde Menta 
+        contenedorInicial.add(lblTitulo);        
+        contenedorInicial.add(lblTitulo2);
+        contenedorInicial.add(cajaTexto);
+        contenedorInicial.add(nombreJugador);
+        contenedorInicial.add(btnIniciarJuego);
+        contenedorInicial.add(btnInstrucciones); 
+        contenedorInicial.add(textoInstrucciones);
+    }
+    
+    
     
 }
